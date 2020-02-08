@@ -1,4 +1,8 @@
-import { Todo } from './todo';
+
+interface Todo {
+  description: string
+  done: boolean
+}
 
 export class App {
   heading = 'Todos'
@@ -7,13 +11,17 @@ export class App {
 
   addTodo() {
     if (this.todoDescription) {
-      this.todos.push(new Todo(this.todoDescription))
+      this.todos.push({
+        description: this.todoDescription,
+        done: false,
+      })
+
       this.todoDescription = ''
     }
   }
 
-  removeTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo)
+  removeTodo(todo) {
+    let index = this.todos.indexOf(todo)
     if (index !== -1) {
       this.todos.splice(index, 1)
     }
